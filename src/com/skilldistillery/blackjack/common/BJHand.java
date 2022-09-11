@@ -57,7 +57,23 @@ public class BJHand extends Hand {
 			System.out.println("The winner is: Dealer");
 			return false;
 		}
+		else if(dealer.isBust() && player.isBust()) {
+			System.out.println("The winner is: Dealer. When a player and dealer bust simultaneously, dealer wins.");
+			return false;
+		}
+		else if (player.isBust()) {
+			System.out.println("The winner is the Dealer. You busted.");
+		}
+		else if (dealer.isBust()) {
+			System.out.println("The dealer busted. Player is the winner!");
+		}
 		return true;
 	}
-
+public boolean isPush(BJHand dealer, BJHand player) {
+	if (player.getHandValue() == dealer.getHandValue()) {
+		System.out.println("It is a tie. Keep your money.");
+		return true;
+	}
+	return true;
+}
 }
