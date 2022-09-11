@@ -47,6 +47,17 @@ public class BJHand extends Hand {
 		}
 		return false;
 	}
+	
+	public boolean determineWinner(BJHand player, BJHand dealer){
+		if (player.getHandValue() > dealer.getHandValue() && !player.isBust()) {			
+			System.out.println("The winner is: Player");
+			return true;
+		}
+		else if (player.getHandValue() < dealer.getHandValue() && !dealer.isBust()) {
+			System.out.println("The winner is: Dealer");
+			return false;
+		}
+		return true;
 	}
 
-
+}

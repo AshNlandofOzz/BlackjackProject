@@ -36,8 +36,8 @@ public class BlackjackApp {
 		System.out.println("The total of the cards is: " + playerHand.getHandValue());
 		System.out.println("Dealers face up card is: " + dealerHand.getHand().get(1).toString() + ". With a value of "
 				+ dealerHand.getHand().get(1).getValue());
-		int option = 0;
-		while (option != 2) {
+		int option = 1;
+		while (option == 1 /*&& !playerHand.isBust()*/) {
 		System.out.println("Would you like to: ");
 		System.out.println("1. Hit");
 		System.out.println("2. Stand");
@@ -52,23 +52,32 @@ public class BlackjackApp {
 				card.getValue();
 				System.out.println(card);
 			}
-			System.out.println("The total of the cards is: " + playerHand.getHandValue());
+			if(playerHand.isBust()) {
+				System.out.println("You busted.");
+			}
+			System.out.println("The total of your cards is: " + playerHand.getHandValue());
 			break;
 		case 2:
 			if (dealerHand.getHandValue() < 17) {
 				dealerHand.add(deck.dealCard());
+				System.out.println("Dealers cards are: ");
+				for (Card card : dealerHand.getHand()) {
+					card.getValue();
+					System.out.println(card);
+				}
 			} else if (dealerHand.getHandValue() >= 17) {
 				System.out.println("Dealers cards are: ");
 				for (Card card : dealerHand.getHand()) {
 					card.getValue();
 					System.out.println(card);
 				}
-				System.out.println("The total of the cards is: " + dealerHand.getHandValue());
 			}
+			System.out.println("The total of the dealer cards is: " + dealerHand.getHandValue());
 			break;
 
 		}
 		}
+		playerHand.determineWinner(playerHand, dealerHand);
 //			System.out.println("How many cards would you like");
 //			int userInput = scan.nextInt();
 //			if (userInput > 52) {
