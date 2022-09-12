@@ -15,26 +15,22 @@ public class BlackjackApp {
 	public static void main(String[] args) {
 		BlackjackApp thisApp = new BlackjackApp();
 		int option = 0;
-		do {
 		thisApp.run();
-		System.out.println("Would you like to play again?");
-		System.out.println("1: Yes");
-		System.out.println("2: No");
+		thisApp.menu();
 		Scanner sc = new Scanner(System.in);
 		option = sc.nextInt();
 		sc.nextLine();
-		switch(option) {
-		case 1:
+		while (option == 1) {
 			thisApp.run();
-			break;
-		case 2:
-			System.out.println("Thank you for playing.");
-		break;
-		default:
-			System.out.println("That is not a 1 or 2, try again.");
-			break;
+			thisApp.menu();
+			option = sc.nextInt();
+			sc.nextLine();
 		}
-		} while(option != 2);
+		if (option != 1) {
+			System.out.println("Thank you for playing.");
+			sc.close();
+		}
+		
 	}
 
 	private void run() {
@@ -73,20 +69,19 @@ public class BlackjackApp {
 				if (playerHand.isBust()) {
 					System.out.println("You busted.");
 				}
-				}
-				System.out.println("The total of your cards is: " + playerHand.getHandValue());
 				if(playerHand.isBlackJack()) {
 					System.out.println("You have BlackJack!");
+				}
+				System.out.println("The total of your cards is: " + playerHand.getHandValue());
 			}
 		} while (!playerHand.isBust() && option != 2 && !playerHand.isBlackJack()); 
-		if (dealerHand.getHandValue() < 17) {
-			dealerHand.add(deck.dealCard());
-			System.out.println("Dealers cards are: ");
-			for (Card card : dealerHand.getHand()) {
-				card.getValue();
-				System.out.println(card);
-			}
-		} else if (dealerHand.getHandValue() >= 17) {
+		while (dealerHand.getHandValue() < 17) {
+			dealerHand.add(deck.dealCard());}
+//			for (Card card : dealerHand.getHand()) {
+//				card.getValue();
+//				System.out.println(card);
+			//}
+		 if (dealerHand.getHandValue() >= 17) {
 			System.out.println("Dealers cards are: ");
 			for (Card card : dealerHand.getHand()) {
 				card.getValue();
@@ -94,8 +89,12 @@ public class BlackjackApp {
 			}
 		}
 		System.out.println("The total of the dealer cards is: " + dealerHand.getHandValue());
-		playerHand.isPush(playerHand, dealerHand);
 		playerHand.determineWinner(playerHand, dealerHand);
 		
+	}
+	public void menu() {
+		System.out.println("Would you like to play again?");
+		System.out.println("1: Yes");
+		System.out.println("Any other number: exit");
 	}
 }
