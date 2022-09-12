@@ -5,7 +5,6 @@ import java.util.List;
 import java.util.Scanner;
 
 import com.skilldistillery.blackjack.common.Card;
-import com.skilldistillery.blackjack.common.Dealer;
 import com.skilldistillery.blackjack.common.Deck;
 import com.skilldistillery.blackjack.common.Hand;
 import com.skilldistillery.blackjack.common.BJHand;
@@ -77,10 +76,6 @@ public class BlackjackApp {
 		} while (!playerHand.isBust() && option != 2 && !playerHand.isBlackJack()); 
 		while (dealerHand.getHandValue() < 17) {
 			dealerHand.add(deck.dealCard());}
-//			for (Card card : dealerHand.getHand()) {
-//				card.getValue();
-//				System.out.println(card);
-			//}
 		 if (dealerHand.getHandValue() >= 17) {
 			System.out.println("Dealers cards are: ");
 			for (Card card : dealerHand.getHand()) {
