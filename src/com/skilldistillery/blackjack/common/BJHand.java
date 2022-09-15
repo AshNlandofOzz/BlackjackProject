@@ -3,9 +3,10 @@ package com.skilldistillery.blackjack.common;
 public class BJHand extends Hand {
 
 	public BJHand() {
-		
 	}
 
+	//This accounts for the total value of the hands and 
+	//changes the ace value accordingly.
 	public int getHandValue() {
 		int numAces = 0;
 		int total = 0;
@@ -40,7 +41,10 @@ public class BJHand extends Hand {
 			System.out.println(card.getValue());
 		}
 	}
-
+	
+	//While I do determine BlackJack, it does not automatically result in a win.
+	//It will result in a win or a push if both dealer and player have Black Jack 
+	//and it leaves room to add more players who may also have Black Jack at the table.
 	public boolean isBlackJack() {
 		if (this.getHandValue() == 21) {
 			return true;
@@ -57,20 +61,18 @@ public class BJHand extends Hand {
 
 	public boolean determineWinner(BJHand player, BJHand dealer) {
 		if (player.isBust()) {
-			System.out.println("The winner is the Dealer. You busted.");
+			System.out.println("The winner is the Dealer. "
+					+ "You busted. Even if the Dealer also busts. Boooooooo!");
 			return true;
 		} else {
 			if (dealer.isBust()) {
-				System.out.println("The dealer busted. Player is the winner!");
+				System.out.println("The dealer busted. Player is the winner! Huuuuzzzzaahh!!");
 				return true;
 			} else if (player.getHandValue() > dealer.getHandValue()) {
 				System.out.println("The winner is: Player");
 				return true;
 			} else if (player.getHandValue() < dealer.getHandValue()) {
 				System.out.println("The winner is: Dealer");
-				return false;
-			} else if (dealer.isBust() && player.isBust()) {
-				System.out.println("The winner is: Dealer. When a player and dealer bust simultaneously, dealer wins.");
 				return false;
 			} else if (player.getHandValue() == dealer.getHandValue()) {
 				System.out.println("It is a tie. Keep your money.");

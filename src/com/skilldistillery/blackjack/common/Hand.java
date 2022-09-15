@@ -14,8 +14,6 @@ public abstract class Hand {
 		hand.add(dealCard);
 	}
 
-	//abstract getHandTotal();
-
 	public ArrayList<Card> getHand() {
 		return hand;
 	} 

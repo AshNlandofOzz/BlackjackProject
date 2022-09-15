@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-public class Deck {
+public class Deck extends Hand{
 	private List<Card> cards;
 	
 	public Deck() {
@@ -21,6 +21,10 @@ public class Deck {
 		return deck;
 	}
 	
+	public List<Card> getCards() {
+		return cards;
+	}
+
 	public int checkDeckSize() {
 		return cards.size();
 	}
@@ -32,7 +36,5 @@ public class Deck {
 	public Card dealCard() {
 		return cards.remove(0);
 	}
-	
-
 	
 }

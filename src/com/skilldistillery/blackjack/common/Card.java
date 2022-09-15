@@ -36,9 +36,12 @@ public class Card {
 		return rank == other.rank && suit == other.suit;
 	}
 	
+	
+	//I edited this so the cards don't shout at the player.
+	//Normal type on screen, not all caps.
 	@Override
 	public String toString() {
-		return rank + " of " + suit;
+		return rank.getDisplay() + " of " + suit;
 	}
 	
 	public int getValue() {
